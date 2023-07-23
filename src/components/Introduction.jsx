@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import styled, { keyframes, createGlobalStyle } from "styled-components";
+import React from "react";
+import styled, { keyframes } from "styled-components";
 
 const SpinAnimation = keyframes`
   from {

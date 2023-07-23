@@ -1,5 +1,5 @@
 import { Copyright } from "@material-ui/icons";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled, { keyframes } from "styled-components";
 import { useInView } from "react-intersection-observer";
 

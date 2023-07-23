@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import About from "../components/About";
 import Education from "../components/Education";

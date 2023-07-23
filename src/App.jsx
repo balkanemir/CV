@@ -1,9 +1,8 @@
 import Home from "./pages/Home";
 import "./App.css";
-import styled, { keyframes, createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import AcornFont from "./Acorn-Bold.woff";
-import FontFaceObserver from "fontfaceobserver";
-import React, { useEffect } from "react";
+import React from "react";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {

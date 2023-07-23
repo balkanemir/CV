@@ -203,7 +203,7 @@ const Skills = ({ colorArray }) => {
             <SectorTitle color={colorArray[4]}>Languages</SectorTitle>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
               <Icon src="./images/turkey.png"></Icon>Turkish
-              <Number>Native</Number>
+              <Number>N</Number>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
               <Icon src="./images/us.png"></Icon>English <Number>C1</Number>

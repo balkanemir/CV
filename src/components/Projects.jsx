@@ -267,11 +267,11 @@ const Projects = ({ colorArray }) => {
       </Title>
       <TileContainer>
         <Tile
+          href="https://main--euphonious-lamington-c6feca.netlify.app/"
           isVisible={inView}
           ref={ref}
           color={colorArray[0]}
           isSoon={false}
-          href="https://www.google.com"
         >
           <TitleContainer>
             <ProjectTitle color={colorArray[4]}>NikeFactory</ProjectTitle>

@@ -265,7 +265,7 @@ const Footer = ({ setColors, setColorArray, colorArray }) => {
               isVisible={inView}
               ref={ref}
               color={colorArray[4]}
-              href="https://open.spotify.com/track/0rwIOKDIGmjcjHNL2gi4nJ"
+              href="https://open.spotify.com/track/5FMXrphygZ4z3gVDHGWxgl"
             >
               <SpotifyIcon src="./images/spotify.png" />
               <SongDescription>

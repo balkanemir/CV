@@ -312,6 +312,7 @@ const Footer = ({ setColors, setColorArray, colorArray }) => {
               </ContactInfo>
             </Contact>
             <DownloadCVButton
+              href="https://docs.google.com/document/d/1_2FiEuRkYn8RywlErvawdypyp-jABuqb/edit?usp=sharing&ouid=105191142972570657182&rtpof=true&sd=true"
               isVisible={inView}
               color={colorArray[0]}
               colorbg={colorArray[4]}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import styled from "styled-components";
 import { useInView } from "react-intersection-observer";
 
@@ -247,7 +247,7 @@ const Content = styled.div`
   }
 `;
 
-const Projects = ({ colorArray }) => {
+const Projects = forwardRef(({ colorArray }, refScrollProjects) => {
   const [isHovered, setIsHovered] = useState("");
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -261,7 +261,7 @@ const Projects = ({ colorArray }) => {
     setIsHovered(hover);
   };
   return (
-    <Container>
+    <Container ref={refScrollProjects} id="PROJECTS">
       <Title isVisible={inViewTitle} ref={refTitle} color={colorArray[4]}>
         Play.
       </Title>
@@ -373,6 +373,6 @@ const Projects = ({ colorArray }) => {
       </TileContainer>
     </Container>
   );
-};
+});
 
 export default Projects;

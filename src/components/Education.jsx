@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import styled from "styled-components";
 import { useInView } from "react-intersection-observer";
 
@@ -21,6 +21,9 @@ const Title = styled.div`
   font-size: 5rem;
   color: ${(props) => props.color};
   font-family: "Acorn";
+  opacity: ${(props) => (props.isVisible ? 1 : 0)};
+  transform: translateY(${(props) => (props.isVisible ? "0" : "40px")});
+  transition: all 1s;
   @media (max-width: 950px) {
     font-size: 5rem;
   }
@@ -254,10 +257,14 @@ const Link = styled.a`
   margin-top: 10px;
 `;
 
-const Education = ({ colorArray }) => {
+const Education = forwardRef(({ colorArray }, refScrollEducation) => {
   const [isHovered, setIsHovered] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
   const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
+  const [refTitle, inViewTitle] = useInView({
     triggerOnce: true,
     threshold: 0.5,
   });
@@ -270,9 +277,11 @@ const Education = ({ colorArray }) => {
     setIsDisabled(!hover);
   };
   return (
-    <Container>
+    <Container ref={refScrollEducation} id="EDUCATION">
       <Wrapper>
-        <Title color={colorArray[4]}>Junior.</Title>
+        <Title ref={refTitle} isVisible={inViewTitle} color={colorArray[4]}>
+          Junior.
+        </Title>
         <TileContainer>
           <Tile>
             <SubTile
@@ -544,6 +553,6 @@ const Education = ({ colorArray }) => {
       </Wrapper>
     </Container>
   );
-};
+});
 
 export default Education;

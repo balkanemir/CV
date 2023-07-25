@@ -75,62 +75,27 @@ const ButtonFocus = styled.div`
   }
 `;
 
-const Navbar = ({ colorArray }) => {
+const Navbar = ({
+  colorArray,
+  handleScroll,
+  aboutRef,
+  educationRef,
+  projectsRef,
+  skillsRef,
+  handleSection,
+}) => {
   const [index, setIndex] = useState(0);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [skip, setSkip] = useState(1750);
 
   const handleIndex = (index) => {
     setIndex(index);
-  };
-
-  const handleScroll = (data) => {
-    if (data === "ABOUT") {
-      window.scrollTo({
-        top: window.innerHeight - 80,
-        behavior: "smooth",
-      });
-    }
-    if (data === "WELCOME") {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
-    if (data === "EDUCATION") {
-      window.scrollTo({
-        top: window.innerHeight * 2 - 80,
-        behavior: "smooth",
-      });
-    }
-    if (data === "PROJECTS") {
-      window.scrollTo({
-        top: window.innerHeight * 4 - 80,
-        behavior: "smooth",
-      });
-    }
-    if (data === "SKILLS") {
-      window.scrollTo({
-        top: window.innerHeight * 5 - 80,
-        behavior: "smooth",
-      });
-    }
   };
 
   const handleYScroll = () => {
     const scrollTop = window.pageYOffset;
     let threshold = getThresholdBasedOnWidth();
     setIsScrolled(scrollTop > threshold);
-    if (scrollTop > 4750) {
-      setSkip(1583);
-    }
-    if (scrollTop > 6000) {
-      setSkip(2000);
-    }
-
-    const newIndex = Math.floor(scrollTop / skip);
-    setIndex(newIndex);
   };
 
   useEffect(() => {
@@ -166,7 +131,7 @@ const Navbar = ({ colorArray }) => {
             <ButtonFocus color={colorArray[0]} index={index}></ButtonFocus>
             <Button
               onClick={() => {
-                handleScroll("ABOUT");
+                handleSection("ABOUT", aboutRef);
                 handleIndex(0);
               }}
             >
@@ -174,7 +139,7 @@ const Navbar = ({ colorArray }) => {
             </Button>
             <Button
               onClick={() => {
-                handleScroll("EDUCATION");
+                handleSection("EDUCATION", educationRef);
                 handleIndex(1);
               }}
             >
@@ -182,7 +147,7 @@ const Navbar = ({ colorArray }) => {
             </Button>
             <Button
               onClick={() => {
-                handleScroll("PROJECTS");
+                handleSection("PROJECTS", projectsRef);
                 handleIndex(2);
               }}
             >
@@ -190,7 +155,7 @@ const Navbar = ({ colorArray }) => {
             </Button>
             <Button
               onClick={() => {
-                handleScroll("SKILLS");
+                handleSection("SKILLS", skillsRef);
                 handleIndex(3);
               }}
             >

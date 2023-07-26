@@ -94,7 +94,6 @@ const Introduction = ({ colorArray }) => {
             I am passionate about coding extraordinary designs by using ReactJS.
           </Description>
         </DescriptionContainer>
-        <Image src="./images/react.png" />
       </Container>
     </>
   );

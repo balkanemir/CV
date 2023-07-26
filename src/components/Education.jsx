@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState, forwardRef, useEffect } from "react";
 import styled from "styled-components";
 import { useInView } from "react-intersection-observer";
 
@@ -257,302 +257,311 @@ const Link = styled.a`
   margin-top: 10px;
 `;
 
-const Education = forwardRef(({ colorArray }, refScrollEducation) => {
-  const [isHovered, setIsHovered] = useState(null);
-  const [isDisabled, setIsDisabled] = useState(true);
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
-  const [refTitle, inViewTitle] = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
-  const [refBigTile, inViewBigTile] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-  const handleHover = (hover) => {
-    setIsHovered(hover);
-    setIsDisabled(!hover);
-  };
-  return (
-    <Container ref={refScrollEducation} id="EDUCATION">
-      <Wrapper>
-        <Title ref={refTitle} isVisible={inViewTitle} color={colorArray[4]}>
-          Junior.
-        </Title>
-        <TileContainer>
-          <Tile>
-            <SubTile
-              isVisible={inView}
-              ref={ref}
-              color={colorArray[4]}
-              width={15}
-              margin={35}
-            >
-              <SubTileTitle
+const Education = forwardRef(
+  ({ colorArray, handleIndex }, refScrollEducation) => {
+    const [isHovered, setIsHovered] = useState(null);
+    const [isDisabled, setIsDisabled] = useState(true);
+    const [ref, inView] = useInView({
+      triggerOnce: true,
+      threshold: 0.5,
+    });
+    const [refTitle, inViewTitle] = useInView({
+      triggerOnce: true,
+      threshold: 0.5,
+    });
+    const [refBigTile, inViewBigTile] = useInView({
+      triggerOnce: false,
+      threshold: 0.1,
+    });
+    const handleHover = (hover) => {
+      setIsHovered(hover);
+      setIsDisabled(!hover);
+    };
+
+    useEffect(() => {
+      if (inViewBigTile) {
+        handleIndex(1);
+      }
+    }, [inViewBigTile]);
+
+    return (
+      <Container ref={refScrollEducation} id="EDUCATION">
+        <Wrapper>
+          <Title ref={refTitle} isVisible={inViewTitle} color={colorArray[4]}>
+            Junior.
+          </Title>
+          <TileContainer>
+            <Tile>
+              <SubTile
                 isVisible={inView}
                 ref={ref}
-                color={colorArray[0]}
-                width={5}
-                margin={15}
+                color={colorArray[4]}
+                width={15}
+                margin={35}
               >
-                Nobel
-              </SubTileTitle>
-              <SubTileTitle
+                <SubTileTitle
+                  isVisible={inView}
+                  ref={ref}
+                  color={colorArray[0]}
+                  width={5}
+                  margin={15}
+                >
+                  Nobel
+                </SubTileTitle>
+                <SubTileTitle
+                  isVisible={inView}
+                  ref={ref}
+                  color={colorArray[0]}
+                  width={8}
+                  margin={15}
+                >
+                  2022 Summer
+                </SubTileTitle>
+              </SubTile>
+              <SubTile
                 isVisible={inView}
                 ref={ref}
-                color={colorArray[0]}
-                width={8}
-                margin={15}
+                color={colorArray[4]}
+                width={15}
+                margin={50}
               >
-                2022 Summer
-              </SubTileTitle>
-            </SubTile>
-            <SubTile
-              isVisible={inView}
-              ref={ref}
-              color={colorArray[4]}
-              width={15}
-              margin={50}
-            >
-              <SubTileTitle
+                <SubTileTitle
+                  isVisible={inView}
+                  ref={ref}
+                  color={colorArray[0]}
+                  width={10}
+                  margin={15}
+                >
+                  Sungkyungwan University
+                </SubTileTitle>
+                <SubTileTitle
+                  isVisible={inView}
+                  ref={ref}
+                  color={colorArray[0]}
+                  width={10}
+                  margin={15}
+                >
+                  2022 Fall
+                </SubTileTitle>
+              </SubTile>
+              <SubTile
                 isVisible={inView}
                 ref={ref}
-                color={colorArray[0]}
-                width={10}
-                margin={15}
+                color={colorArray[4]}
+                width={20}
+                margin={65}
               >
-                Sungkyungwan University
-              </SubTileTitle>
-              <SubTileTitle
+                <SubTileTitle
+                  isVisible={inView}
+                  ref={ref}
+                  color={colorArray[0]}
+                  width={5}
+                  margin={30}
+                >
+                  MYTH-AI
+                </SubTileTitle>
+                <SubTileTitle
+                  isVisible={inView}
+                  ref={ref}
+                  color={colorArray[0]}
+                  width={8}
+                  margin={10}
+                >
+                  2023 Feb - Current
+                </SubTileTitle>
+              </SubTile>
+            </Tile>
+            <Tile>
+              <SubTile
                 isVisible={inView}
                 ref={ref}
-                color={colorArray[0]}
-                width={10}
-                margin={15}
+                color={colorArray[4]}
+                width={85}
+                margin={0}
               >
-                2022 Fall
-              </SubTileTitle>
-            </SubTile>
-            <SubTile
-              isVisible={inView}
-              ref={ref}
-              color={colorArray[4]}
-              width={20}
-              margin={65}
-            >
-              <SubTileTitle
-                isVisible={inView}
-                ref={ref}
-                color={colorArray[0]}
-                width={5}
-                margin={30}
-              >
-                MYTH-AI
-              </SubTileTitle>
-              <SubTileTitle
-                isVisible={inView}
-                ref={ref}
-                color={colorArray[0]}
-                width={8}
-                margin={10}
-              >
-                2023 Feb - Current
-              </SubTileTitle>
-            </SubTile>
-          </Tile>
-          <Tile>
-            <SubTile
-              isVisible={inView}
-              ref={ref}
-              color={colorArray[4]}
-              width={85}
-              margin={0}
-            >
-              <SubTileTitle
-                isVisible={inView}
-                ref={ref}
-                color={colorArray[0]}
-                width={10}
-                margin={30}
-              >
-                Sabancı University
-              </SubTileTitle>
-              <SubTileTitle
-                isVisible={inView}
-                ref={ref}
-                color={colorArray[0]}
-                width={10}
-                margin={30}
-              >
-                2019 - Current
-              </SubTileTitle>
-            </SubTile>
-          </Tile>
-          <BigTileContainer>
-            <BigTileUp>
-              <BigTile
-                isVisible={inViewBigTile}
-                ref={refBigTile}
-                flex={2}
-                bgColor={isHovered === "SABANCI" ? "#93b0ff" : "#cddafd"}
-                onMouseEnter={() => handleHover("SABANCI")}
-                onMouseLeave={() => handleHover(null)}
-                isHovered={isHovered === "SABANCI"}
-              >
-                <BigTileTitle color={colorArray[0]}>
+                <SubTileTitle
+                  isVisible={inView}
+                  ref={ref}
+                  color={colorArray[0]}
+                  width={10}
+                  margin={30}
+                >
                   Sabancı University
-                </BigTileTitle>
-                <Image
-                  src="./images/sub3.png"
+                </SubTileTitle>
+                <SubTileTitle
+                  isVisible={inView}
+                  ref={ref}
+                  color={colorArray[0]}
+                  width={10}
+                  margin={30}
+                >
+                  2019 - Current
+                </SubTileTitle>
+              </SubTile>
+            </Tile>
+            <BigTileContainer>
+              <BigTileUp>
+                <BigTile
+                  isVisible={inViewBigTile}
+                  ref={refBigTile}
+                  flex={2}
+                  bgColor={isHovered === "SABANCI" ? "#93b0ff" : "#cddafd"}
+                  onMouseEnter={() => handleHover("SABANCI")}
+                  onMouseLeave={() => handleHover(null)}
                   isHovered={isHovered === "SABANCI"}
-                />
-                <BigTileContent
-                  color={colorArray[0]}
-                  isHovered={isHovered === "SABANCI"}
                 >
-                  Key Courses
-                  <BigTileList>
-                    <BigTileListItem>Data Structures</BigTileListItem>
-                    <BigTileListItem>Database Systems</BigTileListItem>
-                    <BigTileListItem>Mobile Development</BigTileListItem>
-                    <BigTileListItem>Software Engineering</BigTileListItem>
-                  </BigTileList>
-                  <Link
+                  <BigTileTitle color={colorArray[0]}>
+                    Sabancı University
+                  </BigTileTitle>
+                  <Image
+                    src="./images/sub3.png"
+                    isHovered={isHovered === "SABANCI"}
+                  />
+                  <BigTileContent
                     color={colorArray[0]}
-                    aria-disabled={isDisabled}
-                    href="https://www.sabanciuniv.edu/en"
+                    isHovered={isHovered === "SABANCI"}
                   >
-                    See More
-                  </Link>
-                  <Link
-                    color={colorArray[0]}
-                    aria-disabled={isDisabled}
-                    href="https://www.timeshighereducation.com/world-university-rankings/sabanci-university"
-                  >
-                    See World Rank
-                  </Link>
-                </BigTileContent>
-              </BigTile>
-              <BigTile
-                isVisible={inViewBigTile}
-                flex={1}
-                bgColor={isHovered === "MYTH" ? "#d284ff" : "#e2afff"}
-                onMouseEnter={() => handleHover("MYTH")}
-                onMouseLeave={() => handleHover(null)}
-                isHovered={isHovered === "MYTH"}
-              >
-                <BigTileTitle color={colorArray[0]}>MYTH AI</BigTileTitle>
-                <Image
-                  src="./images/myth2.jpeg"
-                  isHovered={isHovered === "MYTH"}
-                />
-                <BigTileContent
-                  color={colorArray[0]}
+                    Key Courses
+                    <BigTileList>
+                      <BigTileListItem>Data Structures</BigTileListItem>
+                      <BigTileListItem>Database Systems</BigTileListItem>
+                      <BigTileListItem>Mobile Development</BigTileListItem>
+                      <BigTileListItem>Software Engineering</BigTileListItem>
+                    </BigTileList>
+                    <Link
+                      color={colorArray[0]}
+                      aria-disabled={isDisabled}
+                      href="https://www.sabanciuniv.edu/en"
+                    >
+                      See More
+                    </Link>
+                    <Link
+                      color={colorArray[0]}
+                      aria-disabled={isDisabled}
+                      href="https://www.timeshighereducation.com/world-university-rankings/sabanci-university"
+                    >
+                      See World Rank
+                    </Link>
+                  </BigTileContent>
+                </BigTile>
+                <BigTile
+                  isVisible={inViewBigTile}
+                  flex={1}
+                  bgColor={isHovered === "MYTH" ? "#d284ff" : "#e2afff"}
+                  onMouseEnter={() => handleHover("MYTH")}
+                  onMouseLeave={() => handleHover(null)}
                   isHovered={isHovered === "MYTH"}
                 >
-                  Key Roles
-                  <BigTileList>
-                    <BigTileListItem>Applying Data Scraping</BigTileListItem>
-                    <BigTileListItem>
-                      Training SOTA Classification Models
-                    </BigTileListItem>
-                    <BigTileListItem>Building ETL Pipeline</BigTileListItem>
-                  </BigTileList>
-                  <Link
+                  <BigTileTitle color={colorArray[0]}>MYTH AI</BigTileTitle>
+                  <Image
+                    src="./images/myth2.jpeg"
+                    isHovered={isHovered === "MYTH"}
+                  />
+                  <BigTileContent
                     color={colorArray[0]}
-                    aria-disabled={isDisabled}
-                    href="https://myth-ai.com/"
+                    isHovered={isHovered === "MYTH"}
                   >
-                    See More
-                  </Link>
-                </BigTileContent>
-              </BigTile>
-            </BigTileUp>
-            <BigTileDown>
-              <BigTile
-                isVisible={inViewBigTile}
-                flex={1}
-                bgColor={isHovered === "NOBEL" ? "#ffa6c6" : "#fad2e1"}
-                onMouseEnter={() => handleHover("NOBEL")}
-                onMouseLeave={() => handleHover(null)}
-                isHovered={isHovered === "NOBEL"}
-              >
-                <BigTileTitle color={colorArray[0]}>Nobel</BigTileTitle>
-                <Image
-                  src="./images/nobel.png"
-                  isHovered={isHovered === "NOBEL"}
-                />
-                <BigTileContent
-                  color={colorArray[0]}
+                    Key Roles
+                    <BigTileList>
+                      <BigTileListItem>Applying Data Scraping</BigTileListItem>
+                      <BigTileListItem>
+                        Training SOTA Classification Models
+                      </BigTileListItem>
+                      <BigTileListItem>Building ETL Pipeline</BigTileListItem>
+                    </BigTileList>
+                    <Link
+                      color={colorArray[0]}
+                      aria-disabled={isDisabled}
+                      href="https://myth-ai.com/"
+                    >
+                      See More
+                    </Link>
+                  </BigTileContent>
+                </BigTile>
+              </BigTileUp>
+              <BigTileDown>
+                <BigTile
+                  isVisible={inViewBigTile}
+                  flex={1}
+                  bgColor={isHovered === "NOBEL" ? "#ffa6c6" : "#fad2e1"}
+                  onMouseEnter={() => handleHover("NOBEL")}
+                  onMouseLeave={() => handleHover(null)}
                   isHovered={isHovered === "NOBEL"}
                 >
-                  Key Roles
-                  <BigTileList>
-                    <BigTileListItem>Worked on SQL Commands</BigTileListItem>
-                    <BigTileListItem>
-                      Applied HTML & CSS Properties
-                    </BigTileListItem>
-                  </BigTileList>
-                  <Link
+                  <BigTileTitle color={colorArray[0]}>Nobel</BigTileTitle>
+                  <Image
+                    src="./images/nobel.png"
+                    isHovered={isHovered === "NOBEL"}
+                  />
+                  <BigTileContent
                     color={colorArray[0]}
-                    href="https://www.nobel.com.tr/en-us"
+                    isHovered={isHovered === "NOBEL"}
                   >
-                    See More
-                  </Link>
-                </BigTileContent>
-              </BigTile>
-              <BigTile
-                isVisible={inViewBigTile}
-                flex={2}
-                bgColor={isHovered === "SUNG" ? "#8ae4d0" : "#bee3db"}
-                onMouseEnter={() => handleHover("SUNG")}
-                onMouseLeave={() => handleHover(null)}
-                isHovered={isHovered === "SUNG"}
-              >
-                <BigTileTitle color={colorArray[0]}>
-                  Sunkyungkwan University
-                </BigTileTitle>
-                <Image
-                  src="./images/skku2.png"
-                  isHovered={isHovered === "SUNG"}
-                />
-                <BigTileContent
-                  color={colorArray[0]}
+                    Key Roles
+                    <BigTileList>
+                      <BigTileListItem>Worked on SQL Commands</BigTileListItem>
+                      <BigTileListItem>
+                        Applied HTML & CSS Properties
+                      </BigTileListItem>
+                    </BigTileList>
+                    <Link
+                      color={colorArray[0]}
+                      href="https://www.nobel.com.tr/en-us"
+                    >
+                      See More
+                    </Link>
+                  </BigTileContent>
+                </BigTile>
+                <BigTile
+                  isVisible={inViewBigTile}
+                  flex={2}
+                  bgColor={isHovered === "SUNG" ? "#8ae4d0" : "#bee3db"}
+                  onMouseEnter={() => handleHover("SUNG")}
+                  onMouseLeave={() => handleHover(null)}
                   isHovered={isHovered === "SUNG"}
                 >
-                  Key Courses
-                  <BigTileList>
-                    <BigTileListItem>Algorithms</BigTileListItem>
-                    <BigTileListItem>
-                      Web Programming with HTML, CSS, JS and JQUERY
-                    </BigTileListItem>
-                    <BigTileListItem>Media UX Design</BigTileListItem>
-                  </BigTileList>
-                  <Link
+                  <BigTileTitle color={colorArray[0]}>
+                    Sunkyungkwan University
+                  </BigTileTitle>
+                  <Image
+                    src="./images/skku2.png"
+                    isHovered={isHovered === "SUNG"}
+                  />
+                  <BigTileContent
                     color={colorArray[0]}
-                    aria-disabled={isDisabled}
-                    href="https://www.skku.edu/eng/index.do"
+                    isHovered={isHovered === "SUNG"}
                   >
-                    See More
-                  </Link>
-                  <Link
-                    color={colorArray[0]}
-                    aria-disabled={isDisabled}
-                    href="https://www.timeshighereducation.com/world-university-rankings/sungkyunkwan-university-skku"
-                  >
-                    See World Rank
-                  </Link>
-                </BigTileContent>
-              </BigTile>
-            </BigTileDown>
-          </BigTileContainer>
-        </TileContainer>
-      </Wrapper>
-    </Container>
-  );
-});
+                    Key Courses
+                    <BigTileList>
+                      <BigTileListItem>Algorithms</BigTileListItem>
+                      <BigTileListItem>
+                        Web Programming with HTML, CSS, JS and JQUERY
+                      </BigTileListItem>
+                      <BigTileListItem>Media UX Design</BigTileListItem>
+                    </BigTileList>
+                    <Link
+                      color={colorArray[0]}
+                      aria-disabled={isDisabled}
+                      href="https://www.skku.edu/eng/index.do"
+                    >
+                      See More
+                    </Link>
+                    <Link
+                      color={colorArray[0]}
+                      aria-disabled={isDisabled}
+                      href="https://www.timeshighereducation.com/world-university-rankings/sungkyunkwan-university-skku"
+                    >
+                      See World Rank
+                    </Link>
+                  </BigTileContent>
+                </BigTile>
+              </BigTileDown>
+            </BigTileContainer>
+          </TileContainer>
+        </Wrapper>
+      </Container>
+    );
+  }
+);
 
 export default Education;

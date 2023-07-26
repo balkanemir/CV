@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useEffect } from "react";
 import styled from "styled-components";
 import { useInView } from "react-intersection-observer";
 import { GitHub, Instagram, LinkedIn, Twitter } from "@material-ui/icons";
@@ -191,15 +191,20 @@ const Link = styled.a`
   color: ${(props) => props.color};
 `;
 
-const About = forwardRef(({ colorArray }, refScrollAbout) => {
+const About = forwardRef(({ colorArray, handleIndex }, refScrollAbout) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.5,
   });
   const [refAbout, inViewAbout] = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.2,
   });
+  useEffect(() => {
+    if (inViewAbout) {
+      handleIndex(0);
+    }
+  }, [inViewAbout]);
   return (
     <Container ref={refScrollAbout} id="ABOUT">
       <Wrapper>

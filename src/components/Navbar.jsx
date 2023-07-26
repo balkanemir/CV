@@ -83,14 +83,11 @@ const Navbar = ({
   projectsRef,
   skillsRef,
   handleSection,
+  handleIndex,
+  index,
 }) => {
-  const [index, setIndex] = useState(0);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const handleIndex = (index) => {
-    setIndex(index);
-  };
 
   const handleYScroll = () => {
     const scrollTop = window.pageYOffset;

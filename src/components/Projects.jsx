@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState, forwardRef, useEffect } from "react";
 import styled from "styled-components";
 import { useInView } from "react-intersection-observer";
 
@@ -247,132 +247,141 @@ const Content = styled.div`
   }
 `;
 
-const Projects = forwardRef(({ colorArray }, refScrollProjects) => {
-  const [isHovered, setIsHovered] = useState("");
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
-  const [refTitle, inViewTitle] = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
-  const handleHover = (hover) => {
-    setIsHovered(hover);
-  };
-  return (
-    <Container ref={refScrollProjects} id="PROJECTS">
-      <Title isVisible={inViewTitle} ref={refTitle} color={colorArray[4]}>
-        Play.
-      </Title>
-      <TileContainer>
-        <Tile
-          href="https://main--euphonious-lamington-c6feca.netlify.app/"
-          isVisible={inView}
-          ref={ref}
-          color={colorArray[0]}
-          isSoon={false}
-        >
-          <TitleContainer>
-            <ProjectTitle color={colorArray[4]}>NikeFactory</ProjectTitle>
-          </TitleContainer>
-          <Content color={colorArray[3]}>
-            NikeFactory is a shopping UI. It is compatible for every kind of
-            textile product. It is responsive and written with ReactJS. Let's
-            shopping!
-          </Content>
-          <ImageContainer border={colorArray[2]} color={colorArray[4]}>
-            <Image src="./images/sneakers.png" />
-          </ImageContainer>
-        </Tile>
-        <Tile
-          isVisible={inView}
-          color={colorArray[0]}
-          isSoon={true}
-          onMouseEnter={() => handleHover("Tile1")}
-          onMouseLeave={() => handleHover("")}
-        >
-          <LineTop
-            isHovered={isHovered === "Tile1"}
-            src={
-              colorArray[0] === "#03045e"
-                ? "./images/blueline.png"
-                : colorArray[0] === "#283618"
-                ? "./images/greenline.png"
-                : "./images/pinkline.png"
-            }
-          />
-          <LineBottom
-            isHovered={isHovered === "Tile1"}
-            src={
-              colorArray[0] === "#03045e"
-                ? "./images/blueline.png"
-                : colorArray[0] === "#283618"
-                ? "./images/greenline.png"
-                : "./images/pinkline.png"
-            }
-          />
-          <TitleContainer>
-            <ProjectTitle color={colorArray[4]}>SeedLab</ProjectTitle>
-            <SoonTag color={colorArray[4]} colorbg={colorArray[0]}>
-              Soon
-            </SoonTag>
-          </TitleContainer>
-          <Content color={colorArray[3]}>
-            SedLab is an commercial UI for promotion of agricultural products.
-            Pesticides, seeds and every kind of product can be promoted. It is
-            being written with ReactJS. Hopefully, it will be published soon.
-            Stay tuned!
-          </Content>
-          <ImageContainer border={colorArray[2]} color={colorArray[4]}>
-            <Image src="./images/corn.png" />
-          </ImageContainer>
-        </Tile>
-        <Tile
-          isVisible={inView}
-          color={colorArray[0]}
-          isSoon={true}
-          onMouseEnter={() => handleHover("Tile2")}
-          onMouseLeave={() => handleHover("")}
-        >
-          <LineTop
-            isHovered={isHovered === "Tile2"}
-            src={
-              colorArray[0] === "#03045e"
-                ? "./images/blueline.png"
-                : colorArray[0] === "#283618"
-                ? "./images/greenline.png"
-                : "./images/pinkline.png"
-            }
-          />
-          <LineBottom
-            isHovered={isHovered === "Tile2"}
-            src={
-              colorArray[0] === "#03045e"
-                ? "./images/blueline.png"
-                : colorArray[0] === "#283618"
-                ? "./images/greenline.png"
-                : "./images/pinkline.png"
-            }
-          />
-          <TitleContainer>
-            <ProjectTitle color={colorArray[4]}>Delicious</ProjectTitle>
-            <SoonTag color={colorArray[4]} colorbg={colorArray[0]}>
-              Soon
-            </SoonTag>
-          </TitleContainer>
-          <Content color={colorArray[3]}>
-            Delicious is a bakery UI. It is being designing & coding with
-            ReactJS for bakery owners, who they can promote their pastries and
-            cakes. Hopefully, it will be delicious!
-          </Content>
-          <ImageContainer border={colorArray[2]} color={colorArray[4]}>
-            <Image src="./images/cookie.png" />
-          </ImageContainer>
-        </Tile>
-      </TileContainer>
-    </Container>
-  );
-});
+const Projects = forwardRef(
+  ({ colorArray, handleIndex }, refScrollProjects) => {
+    const [isHovered, setIsHovered] = useState("");
+    const [ref, inView] = useInView({
+      triggerOnce: false,
+      threshold: 0.5,
+    });
+    const [refTitle, inViewTitle] = useInView({
+      triggerOnce: true,
+      threshold: 0.5,
+    });
+    const handleHover = (hover) => {
+      setIsHovered(hover);
+    };
+
+    useEffect(() => {
+      if (inView) {
+        handleIndex(2);
+      }
+    }, [inView]);
+
+    return (
+      <Container ref={refScrollProjects} id="PROJECTS">
+        <Title isVisible={inViewTitle} ref={refTitle} color={colorArray[4]}>
+          Play.
+        </Title>
+        <TileContainer>
+          <Tile
+            href="https://main--euphonious-lamington-c6feca.netlify.app/"
+            isVisible={inView}
+            ref={ref}
+            color={colorArray[0]}
+            isSoon={false}
+          >
+            <TitleContainer>
+              <ProjectTitle color={colorArray[4]}>NikeFactory</ProjectTitle>
+            </TitleContainer>
+            <Content color={colorArray[3]}>
+              NikeFactory is a shopping UI. It is compatible for every kind of
+              textile product. It is responsive and written with ReactJS. Let's
+              shopping!
+            </Content>
+            <ImageContainer border={colorArray[2]} color={colorArray[4]}>
+              <Image src="./images/sneakers.png" />
+            </ImageContainer>
+          </Tile>
+          <Tile
+            isVisible={inView}
+            color={colorArray[0]}
+            isSoon={true}
+            onMouseEnter={() => handleHover("Tile1")}
+            onMouseLeave={() => handleHover("")}
+          >
+            <LineTop
+              isHovered={isHovered === "Tile1"}
+              src={
+                colorArray[0] === "#03045e"
+                  ? "./images/blueline.png"
+                  : colorArray[0] === "#283618"
+                  ? "./images/greenline.png"
+                  : "./images/pinkline.png"
+              }
+            />
+            <LineBottom
+              isHovered={isHovered === "Tile1"}
+              src={
+                colorArray[0] === "#03045e"
+                  ? "./images/blueline.png"
+                  : colorArray[0] === "#283618"
+                  ? "./images/greenline.png"
+                  : "./images/pinkline.png"
+              }
+            />
+            <TitleContainer>
+              <ProjectTitle color={colorArray[4]}>SeedLab</ProjectTitle>
+              <SoonTag color={colorArray[4]} colorbg={colorArray[0]}>
+                Soon
+              </SoonTag>
+            </TitleContainer>
+            <Content color={colorArray[3]}>
+              SedLab is an commercial UI for promotion of agricultural products.
+              Pesticides, seeds and every kind of product can be promoted. It is
+              being written with ReactJS. Hopefully, it will be published soon.
+              Stay tuned!
+            </Content>
+            <ImageContainer border={colorArray[2]} color={colorArray[4]}>
+              <Image src="./images/corn.png" />
+            </ImageContainer>
+          </Tile>
+          <Tile
+            isVisible={inView}
+            color={colorArray[0]}
+            isSoon={true}
+            onMouseEnter={() => handleHover("Tile2")}
+            onMouseLeave={() => handleHover("")}
+          >
+            <LineTop
+              isHovered={isHovered === "Tile2"}
+              src={
+                colorArray[0] === "#03045e"
+                  ? "./images/blueline.png"
+                  : colorArray[0] === "#283618"
+                  ? "./images/greenline.png"
+                  : "./images/pinkline.png"
+              }
+            />
+            <LineBottom
+              isHovered={isHovered === "Tile2"}
+              src={
+                colorArray[0] === "#03045e"
+                  ? "./images/blueline.png"
+                  : colorArray[0] === "#283618"
+                  ? "./images/greenline.png"
+                  : "./images/pinkline.png"
+              }
+            />
+            <TitleContainer>
+              <ProjectTitle color={colorArray[4]}>Delicious</ProjectTitle>
+              <SoonTag color={colorArray[4]} colorbg={colorArray[0]}>
+                Soon
+              </SoonTag>
+            </TitleContainer>
+            <Content color={colorArray[3]}>
+              Delicious is a bakery UI. It is being designing & coding with
+              ReactJS for bakery owners, who they can promote their pastries and
+              cakes. Hopefully, it will be delicious!
+            </Content>
+            <ImageContainer border={colorArray[2]} color={colorArray[4]}>
+              <Image src="./images/cookie.png" />
+            </ImageContainer>
+          </Tile>
+        </TileContainer>
+      </Container>
+    );
+  }
+);
 
 export default Projects;

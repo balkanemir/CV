@@ -49,11 +49,16 @@ const Home = () => {
   ]);
 
   const [section, setSection] = useState(null);
+  const [index, setIndex] = useState(0);
 
   const handleSection = (data, scroll) => {
     setSection(scroll);
     handleScroll(data);
     console.log(section);
+  };
+
+  const handleIndex = (index) => {
+    setIndex(index);
   };
 
   const handleScroll = useCallback(
@@ -91,20 +96,31 @@ const Home = () => {
           projectsRef={projectsRef}
           skillsRef={skillsRef}
           handleSection={handleSection}
+          handleIndex={handleIndex}
+          index={index}
         />
         <Introduction colorArray={colorArray} />
-        <About ref={aboutRef} aboutRef={aboutRef} colorArray={colorArray} />
+        <About
+          ref={aboutRef}
+          colorArray={colorArray}
+          handleIndex={handleIndex}
+        />
         <Education
           ref={educationRef}
-          educationRef={educationRef}
           colorArray={colorArray}
+          handleIndex={handleIndex}
+          index={index}
         />
         <Projects
           ref={projectsRef}
-          projectsRef={projectsRef}
           colorArray={colorArray}
+          handleIndex={handleIndex}
         />
-        <Skills ref={skillsRef} skillsRef={skillsRef} colorArray={colorArray} />
+        <Skills
+          ref={skillsRef}
+          colorArray={colorArray}
+          handleIndex={handleIndex}
+        />
         <Footer
           setColors={setColors}
           setColorArray={setColorArray}

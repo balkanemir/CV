@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useEffect } from "react";
 import styled from "styled-components";
 import { useInView } from "react-intersection-observer";
 
@@ -107,15 +107,20 @@ const Number = styled.div`
   color: ${(props) => props.color};
 `;
 
-const Skills = forwardRef(({ colorArray }, refScrollSkills) => {
+const Skills = forwardRef(({ colorArray, handleIndex }, refScrollSkills) => {
   const [ref, inView] = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.2,
   });
   const [refTitle, inViewTitle] = useInView({
     triggerOnce: true,
     threshold: 0.5,
   });
+  useEffect(() => {
+    if (inView) {
+      handleIndex(3);
+    }
+  }, [inView]);
   return (
     <Container ref={refScrollSkills} id="SKILLS">
       <Wrapper>

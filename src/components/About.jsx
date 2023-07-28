@@ -196,18 +196,27 @@ const About = forwardRef(({ colorArray, handleIndex }, refScrollAbout) => {
     triggerOnce: true,
     threshold: 0.5,
   });
+
   const [refAbout, inViewAbout] = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0.2,
   });
+
+  const [refWrapper, inViewWrapper] = useInView({
+    triggerOnce: false,
+    delay: 100,
+    trackVisibility: true,
+  });
+
   useEffect(() => {
-    if (inViewAbout) {
+    if (inViewWrapper) {
       handleIndex(0);
     }
-  }, [inViewAbout]);
+  }, [inViewWrapper]);
+
   return (
     <Container ref={refScrollAbout} id="ABOUT">
-      <Wrapper>
+      <Wrapper ref={refWrapper}>
         <Title isVisible={inView} ref={ref} color={colorArray[4]}>
           I'm Emir.
         </Title>

@@ -307,12 +307,13 @@ const Footer = ({ setColors, setColorArray, colorArray }) => {
                   emir_balkan@hotmail.com
                 </SecretInfo>
                 <SecretInfo color={colorArray[4]} colorbg={colorArray[0]}>
-                  +905336778393
+                  +90 533 677 83 93
                 </SecretInfo>
               </ContactInfo>
             </Contact>
             <DownloadCVButton
-              href="https://docs.google.com/document/d/1_2FiEuRkYn8RywlErvawdypyp-jABuqb/edit?usp=sharing&ouid=105191142972570657182&rtpof=true&sd=true"
+              href="/CV.pdf"
+              download="EmirBalkanCV.pdf"
               isVisible={inView}
               color={colorArray[0]}
               colorbg={colorArray[4]}

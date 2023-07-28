@@ -261,32 +261,44 @@ const Education = forwardRef(
   ({ colorArray, handleIndex }, refScrollEducation) => {
     const [isHovered, setIsHovered] = useState(null);
     const [isDisabled, setIsDisabled] = useState(true);
+
     const [ref, inView] = useInView({
       triggerOnce: true,
       threshold: 0.5,
     });
+
     const [refTitle, inViewTitle] = useInView({
       triggerOnce: true,
       threshold: 0.5,
     });
+
     const [refBigTile, inViewBigTile] = useInView({
-      triggerOnce: false,
+      triggerOnce: true,
       threshold: 0.1,
+      delay: 100,
+      trackVisibility: true,
     });
+
+    const [refWrapper, inViewWrapper] = useInView({
+      triggerOnce: false,
+      delay: 100,
+      trackVisibility: true,
+    });
+
     const handleHover = (hover) => {
       setIsHovered(hover);
       setIsDisabled(!hover);
     };
 
     useEffect(() => {
-      if (inViewBigTile) {
+      if (inViewWrapper) {
         handleIndex(1);
       }
-    }, [inViewBigTile]);
+    }, [inViewWrapper]);
 
     return (
       <Container ref={refScrollEducation} id="EDUCATION">
-        <Wrapper>
+        <Wrapper ref={refWrapper}>
           <Title ref={refTitle} isVisible={inViewTitle} color={colorArray[4]}>
             Junior.
           </Title>

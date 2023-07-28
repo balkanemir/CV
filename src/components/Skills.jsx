@@ -99,31 +99,48 @@ const Icon = styled.img`
   height: 40px;
 `;
 
+const TimeContainer = styled.div`
+  display: flex;
+  align-items: baseline;
+`;
+
 const Number = styled.div`
   width: auto;
   height: auto;
   font-size: 26px;
   font-family: "Acorn";
-  color: ${(props) => props.color};
+`;
+
+const Year = styled.div`
+  font-size: 12px;
+  font-family: "Acorn";
 `;
 
 const Skills = forwardRef(({ colorArray, handleIndex }, refScrollSkills) => {
   const [ref, inView] = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0.2,
   });
+
   const [refTitle, inViewTitle] = useInView({
     triggerOnce: true,
     threshold: 0.5,
   });
+
+  const [refWrapper, inViewWrapper] = useInView({
+    triggerOnce: false,
+    delay: 100,
+    trackVisibility: true,
+  });
+
   useEffect(() => {
-    if (inView) {
+    if (inViewWrapper) {
       handleIndex(3);
     }
-  }, [inView]);
+  }, [inViewWrapper]);
   return (
     <Container ref={refScrollSkills} id="SKILLS">
-      <Wrapper>
+      <Wrapper ref={refWrapper}>
         <Title isVisible={inViewTitle} ref={refTitle} color={colorArray[4]}>
           My Box.
         </Title>
@@ -134,45 +151,78 @@ const Skills = forwardRef(({ colorArray, handleIndex }, refScrollSkills) => {
             </SectorTitle>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
               <Icon src="./images/html.png"></Icon>HTML
-              <Number>5~</Number>
+              <TimeContainer>
+                <Number>~5</Number> <Year>yrs</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
-              <Icon src="./images/css4.png"></Icon>CSS <Number>4~</Number>
+              <Icon src="./images/css4.png"></Icon>CSS{" "}
+              <TimeContainer>
+                <Number>~4</Number> <Year>yrs</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
-              <Icon src="./images/python.png"></Icon>Python <Number>4~</Number>
+              <Icon src="./images/python.png"></Icon>Python{" "}
+              <TimeContainer>
+                <Number>~4</Number> <Year>yrs</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
-              <Icon src="./images/C++.png"></Icon>C++ <Number>3~</Number>
+              <Icon src="./images/C++.png"></Icon>C++{" "}
+              <TimeContainer>
+                <Number>~3</Number> <Year>yrs</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
-              <Icon src="./images/js2.png"></Icon>Javascript <Number>2~</Number>
+              <Icon src="./images/js2.png"></Icon>Javascript{" "}
+              <TimeContainer>
+                <Number>~2</Number> <Year>yrs</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
-              <Icon src="./images/dart.png"></Icon>Dart <Number>1~</Number>
+              <Icon src="./images/dart.png"></Icon>Dart{" "}
+              <TimeContainer>
+                <Number>~1</Number> <Year>yr</Year>
+              </TimeContainer>
             </Tile>
           </TileContainer>
           <TileContainer color={colorArray[0]}>
             <SectorTitle color={colorArray[4]}>Frameworks</SectorTitle>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
-              <Icon src="./images/flask3.png"></Icon>Flask <Number>3~</Number>
+              <Icon src="./images/flask3.png"></Icon>Flask{" "}
+              <TimeContainer>
+                <Number>~3</Number> <Year>yrs</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
-              <Icon src="./images/react.png"></Icon>React <Number>2~</Number>
+              <Icon src="./images/react.png"></Icon>React
+              <TimeContainer>
+                <Number>~2</Number> <Year>yrs</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
               <Icon src="./images/flutter.png"></Icon>Flutter
-              <Number>1~</Number>
+              <TimeContainer>
+                <Number>~1</Number> <Year>yr</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
-              <Icon src="./images/ajax.png"></Icon>Ajax <Number>1~</Number>
+              <Icon src="./images/ajax.png"></Icon>Ajax{" "}
+              <TimeContainer>
+                <Number>~1</Number> <Year>yr</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
-              <Icon src="./images/jquery.png"></Icon>Jquery <Number>1~</Number>
+              <Icon src="./images/jquery.png"></Icon>Jquery{" "}
+              <TimeContainer>
+                <Number>~1</Number> <Year>yr</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
               <Icon src="./images/bootstrap.png"></Icon>Bootstrap 4
-              <Number>1~</Number>
+              <TimeContainer>
+                <Number>~1</Number> <Year>yr</Year>
+              </TimeContainer>
             </Tile>
           </TileContainer>
         </Box>
@@ -181,27 +231,45 @@ const Skills = forwardRef(({ colorArray, handleIndex }, refScrollSkills) => {
             <SectorTitle color={colorArray[4]}>Technologies</SectorTitle>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
               <Icon src="./images/vscode.webp"></Icon>VS Code
-              <Number>4~</Number>
+              <TimeContainer>
+                <Number>~4</Number> <Year>yrs</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
               <Icon src="./images/xcode.webp"></Icon>XCode
-              <Number>4~</Number>
+              <TimeContainer>
+                <Number>~4</Number> <Year>yrs</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
-              <Icon src="./images/git.png"></Icon>Git <Number>2~</Number>
+              <Icon src="./images/git.png"></Icon>Git
+              <TimeContainer>
+                <Number>~2</Number> <Year>yrs</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
-              <Icon src="./images/atom.png"></Icon>Atom <Number>2~</Number>
+              <Icon src="./images/atom.png"></Icon>Atom{" "}
+              <TimeContainer>
+                <Number>~2</Number> <Year>yrs</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
               <Icon src="./images/postman.png"></Icon>Postman
-              <Number>2~</Number>
+              <TimeContainer>
+                <Number>~2</Number> <Year>yrs</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
-              <Icon src="./images/docker.webp"></Icon>Docker <Number>1~</Number>
+              <Icon src="./images/docker.webp"></Icon>Docker{" "}
+              <TimeContainer>
+                <Number>~1</Number> <Year>yr</Year>
+              </TimeContainer>
             </Tile>
             <Tile color={colorArray[0]} colorbg={colorArray[4]}>
-              <Icon src="./images/mysql.png"></Icon>MySQL <Number>1~</Number>
+              <Icon src="./images/mysql.png"></Icon>MySQL
+              <TimeContainer>
+                <Number>~1</Number> <Year>yr</Year>
+              </TimeContainer>
             </Tile>
           </TileContainer>
           <TileContainer color={colorArray[0]}>
